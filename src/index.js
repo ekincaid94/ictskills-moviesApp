@@ -23,11 +23,20 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-         ..... as before ..... 
-      </BrowserRouter>
+        <SiteHeader />      {/* New Header  */}
+        <Switch>
+      <Route path="/reviews/:id" component={MovieReviewPage} />
+        <Route exact path="/movies/favorites" component={FavoriteMoviesPage} />
+        <Route path="/movies/:id" component={MoviePage} />
+        <Route exact path="/" component={HomePage} />
+        <Redirect from="*" to="/" />
+      </Switch>
+    </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 };
 
 ReactDOM.render(<App />, document.getElementById("root"));
+
+
